@@ -1,13 +1,13 @@
 import 'package:balloon_tip/src/models/index.dart';
-import 'package:balloon_tip/src/services/position.manager.dart';
+import 'package:balloon_tip/src/services/index.dart';
 import 'package:balloon_tip/src/utils/index.dart';
-import 'package:balloon_tip/src/views/overlay/index.dart';
+import 'package:balloon_tip/src/views/index.dart';
 import 'package:flutter/widgets.dart';
 
 class BalloonTip extends StatefulWidget {
   // @required
   /// [child] widget that will trigger the balloontip to appear.
-  final Widget children;
+  final Widget child;
 
   // @required
   /// [content] text that appears inside the balloontip.
@@ -47,7 +47,7 @@ class BalloonTip extends StatefulWidget {
   final int? timeout;
 
   const BalloonTip({
-    required this.children,
+    required this.child,
     required this.content,
     this.top,
     this.left,
@@ -108,11 +108,9 @@ class _BalloonTipState extends State<BalloonTip> with WidgetsBindingObserver {
       explicitChildNodes: true,
       child: GestureDetector(
         onTap: () {
-          if (_overlayEntry == null) {
-            _showOverlay(context);
-          }
+          _overlayEntry != null ? _hideOverlay() : _showOverlay(context);
         },
-        child: widget.children,
+        child: widget.child,
       ),
     );
   }
@@ -176,7 +174,7 @@ class _BalloonTipState extends State<BalloonTip> with WidgetsBindingObserver {
       builder: (context) {
         return Stack(
           children: [
-            // overlay key
+            // overlay arrow
             Positioned(
               top: toolTipElementsDisplay.arrow.y,
               left: toolTipElementsDisplay.arrow.x,
@@ -195,7 +193,6 @@ class _BalloonTipState extends State<BalloonTip> with WidgetsBindingObserver {
               child: OverlayContainer(
                 key: _widgetKey,
                 color: widget.color,
-                onBackPressed: _hideOverlay,
                 child: widget.content,
               ),
             ),
