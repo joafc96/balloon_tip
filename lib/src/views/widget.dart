@@ -10,8 +10,8 @@ class BalloonTip extends StatefulWidget {
   final Widget child;
 
   // @required
-  /// [content] text that appears inside the balloontip.
-  final String content;
+  /// [content] widget that appears inside the balloontip.
+  final Widget content;
 
   // @optional
   ///[top] top position for balloontip
@@ -20,14 +20,6 @@ class BalloonTip extends StatefulWidget {
   // @optional
   ///[left] left position for balloontip
   final double? left;
-
-  // @optional
-  ///  Label for the button icon.
-  final String? ariaLabel;
-
-  // @optional
-  /// [onClick] callback for balloonTip bubble close button.
-  final VoidCallback? onClick;
 
   // @optional
   /// [arrowPosition] desired tooltip position in relationship to the trigger.
@@ -51,8 +43,6 @@ class BalloonTip extends StatefulWidget {
     required this.content,
     this.top,
     this.left,
-    this.ariaLabel,
-    this.onClick,
     this.arrowPosition = ArrowPosition.bottomCenter,
     this.color = Constants.fillBackGroundBalloonTipColor,
     this.distance = 0,

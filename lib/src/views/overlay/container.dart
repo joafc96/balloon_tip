@@ -15,7 +15,7 @@ class OverlayContainer extends StatelessWidget {
   final double maxWidth;
 
   /// [child] child of the container
-  final String child;
+  final Widget child;
 
   const OverlayContainer({
     required this.child,
@@ -39,15 +39,7 @@ class OverlayContainer extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: Text(
-                  child,
-                  style: TextStyle(
-                    fontSize: 13,
-                    height: 1.5,
-                    fontWeight: FontWeight.w300,
-                    color: Colors.white,
-                  ),
-                ),
+                child: child,
               ),
             ],
           ),
