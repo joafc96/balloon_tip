@@ -1,16 +1,14 @@
-import 'package:balloon_tip/src/models/index.dart';
-import 'package:balloon_tip/src/utils/index.dart';
+import '../index.dart';
+import 'index.dart';
 
-/// [BalloonTipElementsDisplay] holds the size, and position
-/// for the container and the arrow.
-class ElementsDisplay {
+class BalloonTipElementsDisplay {
   final ElementBox container;
   final ElementBox arrow;
-  final ArrowPosition arrowPosition;
+  final ArrowPosition position;
 
-  ElementsDisplay({
+  BalloonTipElementsDisplay({
     required this.container,
     required this.arrow,
-    required this.arrowPosition,
+    required this.position,
   });
 }

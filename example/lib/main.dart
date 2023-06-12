@@ -12,8 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Balloon Tip Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(),
@@ -27,7 +27,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const balloonTipContent = Text(
-      'わたしは　にほんごがすこししか　はなせません。',
+      "Lorem Ipsum is simply a dummy text",
       style: TextStyle(
         fontSize: 14,
         height: 1.5,
@@ -46,8 +46,8 @@ class MyHomePage extends StatelessWidget {
             children: const [
               BalloonTip(
                 content: balloonTipContent,
-                arrowPosition: ArrowPosition.topLeft,
-                child: Text("Top Left"),
+                arrowPosition: ArrowPosition.bottomLeft,
+                child: Text("Bottom Left"),
               ),
               BalloonTip(
                 content: balloonTipContent,
@@ -56,8 +56,8 @@ class MyHomePage extends StatelessWidget {
               ),
               BalloonTip(
                 content: balloonTipContent,
-                arrowPosition: ArrowPosition.topRight,
-                child: Text("Top Right"),
+                arrowPosition: ArrowPosition.bottomRight,
+                child: Text("Bottom Right"),
               ),
             ],
           ),
@@ -66,8 +66,8 @@ class MyHomePage extends StatelessWidget {
             children: const [
               BalloonTip(
                 content: balloonTipContent,
-                arrowPosition: ArrowPosition.bottomLeft,
-                child: Text("Bottom Left"),
+                arrowPosition: ArrowPosition.topLeft,
+                child: Text("Top Left"),
               ),
               BalloonTip(
                 content: balloonTipContent,
@@ -76,8 +76,8 @@ class MyHomePage extends StatelessWidget {
               ),
               BalloonTip(
                 content: balloonTipContent,
-                arrowPosition: ArrowPosition.bottomRight,
-                child: Text("Bottom Right"),
+                arrowPosition: ArrowPosition.topRight,
+                child: Text("Top Right"),
               ),
             ],
           ),

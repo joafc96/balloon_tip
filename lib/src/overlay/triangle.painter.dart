@@ -1,8 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-/// Design of the triangle that appears attached to the tooltip
 class TrianglePainter extends CustomPainter {
-
   /// [strokeColor] color applied to the triangle
   final Color strokeColor;
 

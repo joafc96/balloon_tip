@@ -1,12 +1,11 @@
-import 'package:balloon_tip/src/utils/index.dart';
-import 'package:balloon_tip/src/views/index.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
-/// Loads the arrow from the paint code and applies the correct transformations
-/// color, rotation and mirroring
+import '../index.dart';
+import 'index.dart';
+
 class OverlayArrow extends StatelessWidget {
   /// [color] background color applied for the arrow
-  final Color color;
+  final Color? color;
 
   /// [position] position of the arrow where it has to be rendered
   final ArrowPosition position;
@@ -17,11 +16,20 @@ class OverlayArrow extends StatelessWidget {
   /// [height] height of the arrow
   final double height;
 
+  /// [fadeAnimation] Animation tween applid to the overlay
+  final Animation<double> fadeAnimation;
+
+  // @optional
+  /// [semanticsLabel] An optional semanticsLabel to be provided for automation team
+  final String? semanticsLabel;
+
   const OverlayArrow({
     required this.position,
-    required this.color,
-    this.width = Constants.arrowWidth,
-    this.height = Constants.arrowHeight,
+    required this.width,
+    required this.height,
+    required this.fadeAnimation,
+    this.color,
+    this.semanticsLabel,
     super.key,
   });
 
@@ -45,13 +53,20 @@ class OverlayArrow extends StatelessWidget {
       quarterTurns: quarterTurns,
       child: CustomPaint(
         size: Size(width, height),
-        painter: TrianglePainter(strokeColor: color),
+        painter: TrianglePainter(strokeColor: color ?? Colors.black),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return _getTriangle();
+    return Semantics(
+      container: true,
+      label: semanticsLabel,
+      child: FadeTransition(
+        opacity: fadeAnimation,
+        child: _getTriangle(),
+      ),
+    );
   }
 }

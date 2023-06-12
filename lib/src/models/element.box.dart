@@ -1,16 +1,10 @@
-import 'package:balloon_tip/src/utils/index.dart';
+import '../constants.dart';
 
 class ElementBox {
   final double w;
   final double h;
   final double x;
   final double y;
-
-  ElementBox.zero()
-      : w = 0,
-        h = 0,
-        x = 0,
-        y = 0;
 
   ElementBox.rect({
     required this.w,
@@ -19,6 +13,11 @@ class ElementBox {
     this.y = 0.0,
   });
 
+  ElementBox.zero()
+      : w = 0,
+        h = 0,
+        x = 0,
+        y = 0;
 
   ElementBox.point({
     required this.x,
@@ -27,8 +26,8 @@ class ElementBox {
         h = 0;
 
   ElementBox.arrow()
-      : w = Constants.arrowWidth,
-        h = Constants.arrowHeight,
+      : w = BalloonTipConstants.arrowWidth,
+        h = BalloonTipConstants.arrowHeight,
         x = 0,
         y = 0;
 }
