@@ -27,7 +27,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const balloonTipContent = Text(
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta aliquam metus a tincidunt. Ut ac suscipit magna.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel mauris velit. Maecenas convallis sapien non pharetra viverra. Maecenas tristique purus at aliquam convallis. Nam vestibulum ipsum sem. In scelerisque massa at iaculis tempor.",
       style: TextStyle(
         fontSize: 14,
         height: 1.5,
@@ -36,55 +36,18 @@ class MyHomePage extends StatelessWidget {
       ),
     );
 
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                BalloonTip(
-                  content: balloonTipContent,
-                  arrowPosition: ArrowPosition.bottomLeft,
-                  child: Text("Bottom Left"),
-                ),
-                BalloonTip(
-                  content: balloonTipContent,
-                  arrowPosition: ArrowPosition.topCenter,
-                  containerMaxWidth: 250,
-                  child: Text("Top Center"),
-                ),
-                BalloonTip(
-                  content: balloonTipContent,
-                  arrowPosition: ArrowPosition.bottomRight,
-                  child: Text("Bottom Right"),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                BalloonTip(
-                  content: balloonTipContent,
-                  arrowPosition: ArrowPosition.topLeft,
-                  child: Text("Top Left"),
-                ),
-                BalloonTip(
-                  content: balloonTipContent,
-                  arrowPosition: ArrowPosition.bottomCenter,
-                  containerMaxWidth: 250,
-                  child: Text("Bottom Center"),
-                ),
-                BalloonTip(
-                  content: balloonTipContent,
-                  arrowPosition: ArrowPosition.topRight,
-                  child: Text("Top Right"),
-                ),
-              ],
-            ),
-          ],
+    return Scaffold(
+      body: Center(
+        child: BalloonTip(
+          arrowPosition: ArrowPosition.bottomCenter,
+          containerMaxWidth: 200,
+          arrowTipDistance: 0,
+          content: balloonTipContent,
+          child: FloatingActionButton.small(
+            onPressed: () {},
+            backgroundColor: Colors.pinkAccent,
+            child: const Icon(Icons.favorite),
+          ),
         ),
       ),
     );

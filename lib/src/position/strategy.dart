@@ -19,7 +19,8 @@ class BottomLeftPositionStrategy extends IPositionStrategy {
       arrow: ElementBox.rect(
         w: params.arrowBox.w,
         h: params.arrowBox.h,
-        x: _half(params.triggerBox.w).floorToDouble(),
+        x: (-_half(params.arrowBox.w) + _half(params.triggerBox.w))
+            .floorToDouble(),
         y: (-params.arrowBox.h - params.distance).floorToDouble(),
       ),
       container: ElementBox.rect(
@@ -44,7 +45,8 @@ class BottomCenterPositionStrategy extends IPositionStrategy {
       arrow: ElementBox.rect(
         w: params.arrowBox.w,
         h: params.arrowBox.h,
-        x: _half(params.triggerBox.w).floorToDouble(),
+        x: (-_half(params.arrowBox.w) + _half(params.triggerBox.w))
+            .floorToDouble(),
         y: (-params.arrowBox.h - params.distance).floorToDouble(),
       ),
       container: ElementBox.rect(
@@ -69,7 +71,8 @@ class BottomRightPositionStrategy extends IPositionStrategy {
       arrow: ElementBox.rect(
         w: params.arrowBox.w,
         h: params.arrowBox.h,
-        x: _half(params.triggerBox.w).floorToDouble(),
+        x: (-_half(params.arrowBox.w) + _half(params.triggerBox.w))
+            .floorToDouble(),
         y: (-params.arrowBox.h - params.distance).floorToDouble(),
       ),
       container: ElementBox.rect(
@@ -97,7 +100,8 @@ class TopLeftPositionStrategy extends IPositionStrategy {
       arrow: ElementBox.rect(
         w: params.arrowBox.w,
         h: params.arrowBox.h,
-        x: _half(params.triggerBox.w).ceilToDouble(),
+        x: (-_half(params.arrowBox.w) + _half(params.triggerBox.w))
+            .ceilToDouble(),
         y: (params.triggerBox.h + params.distance).ceilToDouble(),
       ),
       container: ElementBox.rect(
@@ -122,7 +126,8 @@ class TopCenterPositionStrategy extends IPositionStrategy {
       arrow: ElementBox.rect(
         w: params.arrowBox.w,
         h: params.arrowBox.h,
-        x: _half(params.triggerBox.w).ceilToDouble(),
+        x: (-_half(params.arrowBox.w) + _half(params.triggerBox.w))
+            .ceilToDouble(),
         y: (params.triggerBox.h + params.distance).ceilToDouble(),
       ),
       container: ElementBox.rect(
@@ -147,7 +152,8 @@ class TopRightPositionStrategy extends IPositionStrategy {
       arrow: ElementBox.rect(
         w: params.arrowBox.w,
         h: params.arrowBox.h,
-        x: _half(params.triggerBox.w).ceilToDouble(),
+        x: (-_half(params.arrowBox.w) + _half(params.triggerBox.w))
+            .ceilToDouble(),
         y: (params.triggerBox.h + params.distance).ceilToDouble(),
       ),
       container: ElementBox.rect(
