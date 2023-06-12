@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 import 'models/index.dart';
 import 'overlay/index.dart';
@@ -11,38 +11,77 @@ class BalloonTip extends StatefulWidget {
   final Widget child;
 
   // @required
-  /// [content] Content within the balloontip bubble.
+  /// [content] Content within the balloontip container.
   final Widget content;
-
-  // @optional
-  /// [onClick] Callback for balloonTip bubble close button.
-  final VoidCallback? onClick;
 
   // @optional
   // default: `BalloonTipArrowPosition.bottomCenter`
   /// [arrowPosition] Desired tooltip position in relationship to the trigger.
-  final ArrowPosition? arrowPosition;
+  final ArrowPosition arrowPosition;
 
-  /* BELOW PROPS ARE NOT PROVIDED IN FIGMA */
   // @optional
   /// [distance] Space between the balloonTip and the trigger.
-  final double? distance;
+  final double arrowTipDistance;
+
+  // @optional
+  /// [containerMaxWidth] maximum width applied to the container
+  final double containerMaxWidth;
+
+  // @optional
+  /// [containerMinWidth] minimum width applied to the container
+  final double containerMinWidth;
+
+  // @optional
+  /// [containerMinWidth] inner padding applied to the container
+  final EdgeInsets containerPadding;
 
   // @optional
   /// [color] Background color of the balloonTip and the arrow.
-  final Color? color;
+  final Color backgroundColor;
 
   // @optional
-  /// [semanticsLabel] An optional semanticsLabel to be provided for automation team
+  /// [duration] The forward duration of the opacity animation.
+  final Duration duration;
+
+  // @optional
+  /// [reverseDuration] The reverse duration of the opacity animation.
+  final Duration reverseDuration;
+
+  // @optional
+  /// [curve] The forward curve of the opacity animation.
+  final Curve curve;
+
+  // @optional
+  /// [reverseCurve] The reverse curve of the opacity animation.
+  final Curve reverseCurve;
+
+  // @optional
+  /// [showWhenUnlinked] Whether to show when composited follower is unlinked
+  final bool showWhenUnlinked;
+
+// @optional
+  /// [textDirection] The text direction applied to the text content
+  final TextDirection textDirection;
+
+  // @optional
+  /// [semanticsLabel] An optional semanticsLabel to be provided for automation.
   final String? semanticsLabel;
 
   const BalloonTip({
     required this.child,
     required this.content,
-    this.onClick,
-    this.color,
+    this.backgroundColor = Colors.black,
+    this.duration = const Duration(milliseconds: 150),
+    this.reverseDuration = const Duration(milliseconds: 75),
+    this.curve = Curves.easeInOut,
+    this.reverseCurve = Curves.easeInOut,
     this.arrowPosition = ArrowPosition.bottomCenter,
-    this.distance = 0,
+    this.arrowTipDistance = 0,
+    this.showWhenUnlinked = false,
+    this.containerMinWidth = 80,
+    this.containerMaxWidth = 160,
+    this.containerPadding = const EdgeInsets.all(12),
+    this.textDirection = TextDirection.ltr,
     this.semanticsLabel,
     super.key,
   });
@@ -55,8 +94,8 @@ class _BalloonTipState extends State<BalloonTip>
     with WidgetsBindingObserver, SingleTickerProviderStateMixin {
   late final AnimationController _animationController = AnimationController(
     vsync: this,
-    duration: const Duration(milliseconds: 150),
-    reverseDuration: const Duration(milliseconds: 75),
+    duration: widget.duration,
+    reverseDuration: widget.reverseDuration,
     debugLabel: "__balloon_tip_animation__",
     value: 0.0,
     lowerBound: 0.0,
@@ -65,8 +104,8 @@ class _BalloonTipState extends State<BalloonTip>
 
   late final Animation<double> _fadeAnim = CurvedAnimation(
     parent: _animationController,
-    curve: Curves.easeInOut,
-    reverseCurve: Curves.easeInOut,
+    curve: widget.curve,
+    reverseCurve: widget.reverseCurve,
   );
 
   // Unique link used for composited target and follower
@@ -83,7 +122,7 @@ class _BalloonTipState extends State<BalloonTip>
   final GlobalKey _triggerBoxKey = GlobalKey(debugLabel: "__trigger_box__");
 
   // Overlay state and entries
-  late final OverlayState? _overlayState = Overlay.of(context);
+  late final OverlayState _overlayState = Overlay.of(context);
   OverlayEntry? _overlayContainerEntry;
   OverlayEntry? _overlayArrowEntry;
 
@@ -148,8 +187,11 @@ class _BalloonTipState extends State<BalloonTip>
           child: Center(
             child: OverlayContainer(
               key: _hiddenOverlayKey,
-              color: widget.color,
+              color: widget.backgroundColor,
               fadeAnimation: _fadeAnim,
+              padding: widget.containerPadding,
+              minWidth: widget.containerMinWidth,
+              maxWidth: widget.containerMaxWidth,
               child: widget.content,
             ),
           ),
@@ -157,7 +199,7 @@ class _BalloonTipState extends State<BalloonTip>
       },
     );
 
-    _overlayState?.insert(_overlayEntryHidden!);
+    _overlayState.insert(_overlayEntryHidden!);
   }
 
   /// Loads the balloontip into view
@@ -173,7 +215,7 @@ class _BalloonTipState extends State<BalloonTip>
         arrowBox: _arrowBox,
         triggerBox: _triggerBox,
         overlayBox: _overlayBox,
-        distance: widget.distance!,
+        distance: widget.arrowTipDistance,
       ),
     ).load(
       preferredPosition: widget.arrowPosition,
@@ -190,10 +232,10 @@ class _BalloonTipState extends State<BalloonTip>
               toolTipElementsDisplay.arrow.x,
               toolTipElementsDisplay.arrow.y,
             ),
-            showWhenUnlinked:
-                false, // to hide the follower when unlinked from the target
+            showWhenUnlinked: widget
+                .showWhenUnlinked, // to hide the follower when unlinked from the target
             child: OverlayArrow(
-              color: widget.color,
+              color: widget.backgroundColor,
               position: toolTipElementsDisplay.position,
               width: _arrowBox.w,
               height: _arrowBox.h,
@@ -209,29 +251,34 @@ class _BalloonTipState extends State<BalloonTip>
     _overlayContainerEntry = OverlayEntry(
       builder: (context) {
         return Align(
+          alignment: Alignment.topLeft,
           child: CompositedTransformFollower(
             link: _layerLink,
             offset: Offset(
               toolTipElementsDisplay.container.x,
               toolTipElementsDisplay.container.y,
             ),
-            showWhenUnlinked:
-                false, // to hide the follower when unlinked from the target
-            child: OverlayContainer(
-              color: widget.color,
-              onBackPressed: _onBackPressed,
-              fadeAnimation: _fadeAnim,
-              semanticsLabel: widget.semanticsLabel,
-              child: widget.content,
-
+            showWhenUnlinked: widget
+                .showWhenUnlinked, // to hide the follower when unlinked from the target
+            child: Directionality(
+              textDirection: widget.textDirection,
+              child: OverlayContainer(
+                color: widget.backgroundColor,
+                fadeAnimation: _fadeAnim,
+                semanticsLabel: widget.semanticsLabel,
+                padding: widget.containerPadding,
+                minWidth: widget.containerMinWidth,
+                maxWidth: widget.containerMaxWidth,
+                child: widget.content,
+              ),
             ),
           ),
         );
       },
     );
 
-    _overlayState?.insert(_overlayContainerEntry!);
-    _overlayState?.insert(_overlayArrowEntry!);
+    _overlayState.insert(_overlayContainerEntry!);
+    _overlayState.insert(_overlayArrowEntry!);
 
     _overlayIsShown = true;
   }
@@ -297,10 +344,10 @@ class _BalloonTipState extends State<BalloonTip>
   }
 
   // Handles the back press event
-  void _onBackPressed() async {
-    widget.onClick?.call();
+  // void _onBackPressed() async {
+  //   widget.onClick?.call();
 
-    await _animationController.reverse();
-    _hideOverlay();
-  }
+  //   await _animationController.reverse();
+  //   _hideOverlay();
+  // }
 }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
-
 class OverlayContainer extends StatelessWidget {
   /// [child] child of the container
   final Widget child;
@@ -14,14 +12,11 @@ class OverlayContainer extends StatelessWidget {
 
   /// [maxWidth] maximum width applied to the container
   /// deafault value is 160
-  final double? maxWidth;
+  final double maxWidth;
 
   /// [minWidth] minimum width applied to the container
   /// deafault value is 80
-  final double? minWidth;
-
-  /// [onBackPressed] function which triggers while user clicks the close icon
-  final VoidCallback? onBackPressed;
+  final double minWidth;
 
   /// [fadeAnimation] Animation tween applid to the overlay
   final Animation<double> fadeAnimation;
@@ -34,10 +29,9 @@ class OverlayContainer extends StatelessWidget {
     required this.child,
     required this.fadeAnimation,
     this.color,
-    this.onBackPressed,
     this.padding,
-    this.maxWidth,
-    this.minWidth,
+    required this.maxWidth,
+    required this.minWidth,
     this.semanticsLabel,
     super.key,
   });
@@ -52,13 +46,11 @@ class OverlayContainer extends StatelessWidget {
         child: FadeTransition(
           opacity: fadeAnimation,
           child: Container(
-            color: color ?? Colors.black,
-            padding: padding ?? BalloonTipConstants.overlayContainerPadding,
+            color: color,
+            padding: padding,
             constraints: BoxConstraints(
-              minWidth:
-                  minWidth ?? BalloonTipConstants.overlayContainerMinWidth,
-              maxWidth:
-                  maxWidth ?? BalloonTipConstants.overlayContainerMaxWidth,
+              minWidth: minWidth,
+              maxWidth: maxWidth,
             ),
             child: child,
           ),

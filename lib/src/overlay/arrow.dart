@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../index.dart';
 import 'index.dart';
 
 class OverlayArrow extends StatelessWidget {
   /// [color] background color applied for the arrow
-  final Color? color;
+  final Color color;
 
   /// [position] position of the arrow where it has to be rendered
   final ArrowPosition position;
@@ -28,7 +28,7 @@ class OverlayArrow extends StatelessWidget {
     required this.width,
     required this.height,
     required this.fadeAnimation,
-    this.color,
+    required this.color,
     this.semanticsLabel,
     super.key,
   });
@@ -53,7 +53,7 @@ class OverlayArrow extends StatelessWidget {
       quarterTurns: quarterTurns,
       child: CustomPaint(
         size: Size(width, height),
-        painter: TrianglePainter(strokeColor: color ?? Colors.black),
+        painter: TrianglePainter(strokeColor: color ),
       ),
     );
   }

@@ -27,7 +27,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const balloonTipContent = Text(
-      "Lorem Ipsum is simply a dummy text",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta aliquam metus a tincidunt. Ut ac suscipit magna.",
       style: TextStyle(
         fontSize: 14,
         height: 1.5,
@@ -36,52 +36,56 @@ class MyHomePage extends StatelessWidget {
       ),
     );
 
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              BalloonTip(
-                content: balloonTipContent,
-                arrowPosition: ArrowPosition.bottomLeft,
-                child: Text("Bottom Left"),
-              ),
-              BalloonTip(
-                content: balloonTipContent,
-                arrowPosition: ArrowPosition.topCenter,
-                child: Text("Top Center"),
-              ),
-              BalloonTip(
-                content: balloonTipContent,
-                arrowPosition: ArrowPosition.bottomRight,
-                child: Text("Bottom Right"),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              BalloonTip(
-                content: balloonTipContent,
-                arrowPosition: ArrowPosition.topLeft,
-                child: Text("Top Left"),
-              ),
-              BalloonTip(
-                content: balloonTipContent,
-                arrowPosition: ArrowPosition.bottomCenter,
-                child: Text("Bottom Center"),
-              ),
-              BalloonTip(
-                content: balloonTipContent,
-                arrowPosition: ArrowPosition.topRight,
-                child: Text("Top Right"),
-              ),
-            ],
-          ),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                BalloonTip(
+                  content: balloonTipContent,
+                  arrowPosition: ArrowPosition.bottomLeft,
+                  child: Text("Bottom Left"),
+                ),
+                BalloonTip(
+                  content: balloonTipContent,
+                  arrowPosition: ArrowPosition.topCenter,
+                  containerMaxWidth: 250,
+                  child: Text("Top Center"),
+                ),
+                BalloonTip(
+                  content: balloonTipContent,
+                  arrowPosition: ArrowPosition.bottomRight,
+                  child: Text("Bottom Right"),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                BalloonTip(
+                  content: balloonTipContent,
+                  arrowPosition: ArrowPosition.topLeft,
+                  child: Text("Top Left"),
+                ),
+                BalloonTip(
+                  content: balloonTipContent,
+                  arrowPosition: ArrowPosition.bottomCenter,
+                  containerMaxWidth: 250,
+                  child: Text("Bottom Center"),
+                ),
+                BalloonTip(
+                  content: balloonTipContent,
+                  arrowPosition: ArrowPosition.topRight,
+                  child: Text("Top Right"),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
