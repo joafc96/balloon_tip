@@ -10,16 +10,19 @@ class OverlayContainer extends StatelessWidget {
   /// [padding] edgeinsets applied to the child
   final EdgeInsets? padding;
 
-  /// [maxWidth] maximum width applied to the container
-  /// deafault value is 160
-  final double maxWidth;
-
   /// [minWidth] minimum width applied to the container
   /// deafault value is 80
-  final double minWidth;
+  final double? minWidth;
+
+  /// [maxWidth] maximum width applied to the container
+  /// deafault value is 160
+  final double? maxWidth;
 
   /// [fadeAnimation] Animation tween applid to the overlay
   final Animation<double> fadeAnimation;
+
+  /// [onBackPressed] function which triggers while user clicks the close icon
+  final VoidCallback? onBackPressed;
 
   // @optional
   /// [semanticsLabel] An optional semanticsLabel to be provided for automation team
@@ -28,10 +31,11 @@ class OverlayContainer extends StatelessWidget {
   const OverlayContainer({
     required this.child,
     required this.fadeAnimation,
+    this.maxWidth,
+    this.minWidth,
+    this.onBackPressed,
     this.color,
     this.padding,
-    required this.maxWidth,
-    required this.minWidth,
     this.semanticsLabel,
     super.key,
   });
@@ -45,14 +49,17 @@ class OverlayContainer extends StatelessWidget {
         type: MaterialType.transparency,
         child: FadeTransition(
           opacity: fadeAnimation,
-          child: Container(
-            color: color,
-            padding: padding,
-            constraints: BoxConstraints(
-              minWidth: minWidth,
-              maxWidth: maxWidth,
+          child: GestureDetector(
+            onTap: onBackPressed,
+            child: Container(
+              color: color ?? Colors.black,
+              padding: padding,
+              constraints: BoxConstraints(
+                minWidth: minWidth ?? 80,
+                maxWidth: maxWidth ?? 160,
+              ),
+              child: child,
             ),
-            child: child,
           ),
         ),
       ),

@@ -15,6 +15,10 @@ class BalloonTip extends StatefulWidget {
   final Widget content;
 
   // @optional
+  /// [onDismiss] Callback for balloonTip bubble close button.
+  final VoidCallback? onDismiss;
+
+  // @optional
   // default: `BalloonTipArrowPosition.bottomCenter`
   /// [arrowPosition] Desired tooltip position in relationship to the trigger.
   final ArrowPosition arrowPosition;
@@ -22,22 +26,6 @@ class BalloonTip extends StatefulWidget {
   // @optional
   /// [distance] Space between the balloonTip and the trigger.
   final double arrowTipDistance;
-
-  // @optional
-  /// [containerMaxWidth] maximum width applied to the container
-  final double containerMaxWidth;
-
-  // @optional
-  /// [containerMinWidth] minimum width applied to the container
-  final double containerMinWidth;
-
-  // @optional
-  /// [containerMinWidth] inner padding applied to the container
-  final EdgeInsets containerPadding;
-
-  // @optional
-  /// [color] Background color of the balloonTip and the arrow.
-  final Color backgroundColor;
 
   // @optional
   /// [duration] The forward duration of the opacity animation.
@@ -64,24 +52,41 @@ class BalloonTip extends StatefulWidget {
   final TextDirection textDirection;
 
   // @optional
+  /// [containerMinWidth] minimum width applied to the container.
+  final double? containerMinWidth;
+
+  // @optional
+  /// [containerMaxWidth] maximum width applied to the container.
+  final double? containerMaxWidth;
+
+  // @optional
+  /// [containerMinWidth] inner padding applied to the container.
+  final EdgeInsets? containerPadding;
+
+  // @optional
+  /// [color] Background color of the balloonTip and the arrow.
+  final Color? backgroundColor;
+
+  // @optional
   /// [semanticsLabel] An optional semanticsLabel to be provided for automation.
   final String? semanticsLabel;
 
   const BalloonTip({
     required this.child,
     required this.content,
-    this.backgroundColor = Colors.black,
+    this.backgroundColor,
+    this.onDismiss,
     this.duration = const Duration(milliseconds: 150),
     this.reverseDuration = const Duration(milliseconds: 75),
     this.curve = Curves.easeInOut,
     this.reverseCurve = Curves.easeInOut,
     this.arrowPosition = ArrowPosition.bottomCenter,
-    this.arrowTipDistance = 0,
-    this.showWhenUnlinked = false,
-    this.containerMinWidth = 80,
-    this.containerMaxWidth = 160,
     this.containerPadding = const EdgeInsets.all(12),
     this.textDirection = TextDirection.ltr,
+    this.arrowTipDistance = 0,
+    this.showWhenUnlinked = false,
+    this.containerMinWidth,
+    this.containerMaxWidth,
     this.semanticsLabel,
     super.key,
   });
@@ -232,8 +237,8 @@ class _BalloonTipState extends State<BalloonTip>
               toolTipElementsDisplay.arrow.x,
               toolTipElementsDisplay.arrow.y,
             ),
-            showWhenUnlinked: widget
-                .showWhenUnlinked, // to hide the follower when unlinked from the target
+            // to hide the follower when unlinked from the target
+            showWhenUnlinked: widget.showWhenUnlinked,
             child: OverlayArrow(
               color: widget.backgroundColor,
               position: toolTipElementsDisplay.position,
@@ -258,8 +263,8 @@ class _BalloonTipState extends State<BalloonTip>
               toolTipElementsDisplay.container.x,
               toolTipElementsDisplay.container.y,
             ),
-            showWhenUnlinked: widget
-                .showWhenUnlinked, // to hide the follower when unlinked from the target
+            // to hide the follower when unlinked from the target
+            showWhenUnlinked: widget.showWhenUnlinked,
             child: Directionality(
               textDirection: widget.textDirection,
               child: OverlayContainer(
@@ -269,6 +274,7 @@ class _BalloonTipState extends State<BalloonTip>
                 padding: widget.containerPadding,
                 minWidth: widget.containerMinWidth,
                 maxWidth: widget.containerMaxWidth,
+                onBackPressed: _onBackPressed,
                 child: widget.content,
               ),
             ),
@@ -344,10 +350,10 @@ class _BalloonTipState extends State<BalloonTip>
   }
 
   // Handles the back press event
-  // void _onBackPressed() async {
-  //   widget.onClick?.call();
+  void _onBackPressed() async {
+    widget.onDismiss?.call();
 
-  //   await _animationController.reverse();
-  //   _hideOverlay();
-  // }
+    await _animationController.reverse();
+    _hideOverlay();
+  }
 }
