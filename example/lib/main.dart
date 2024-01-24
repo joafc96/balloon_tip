@@ -23,13 +23,29 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+
+
+  @override
+  void initState() {
+
+
+    super.initState();
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
     const balloonTipContent = Text(
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel mauris velit. Maecenas convallis sapien non pharetra viverra. Maecenas tristique purus at aliquam convallis. Nam vestibulum ipsum sem. In scelerisque massa at iaculis tempor.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel mauris velit.",
       style: TextStyle(
         fontSize: 14,
         height: 1.5,
@@ -51,7 +67,10 @@ class MyHomePage extends StatelessWidget {
           child: FloatingActionButton.small(
             onPressed: () {},
             backgroundColor: Colors.pinkAccent,
-            child: const Icon(Icons.favorite),
+            child: const Icon(
+              Icons.favorite,
+              color: Colors.white,
+            ),
           ),
         ),
       ),
