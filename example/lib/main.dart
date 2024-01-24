@@ -42,8 +42,6 @@ class MyHomePage extends StatelessWidget {
       body: Center(
         child: BalloonTip(
           arrowPosition: ArrowPosition.bottomCenter,
-          containerMaxWidth: 200,
-          arrowTipDistance: 0,
           content: balloonTipContent,
           onDismiss: () {
             log("on back pressed");

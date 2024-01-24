@@ -2,16 +2,25 @@
 
 `balloon_tip` gives you more flexibility over the Flutter standard `Tooltip` by allowing you to set arbitrary content. It also expands on their single axis layout algorithm to fit both vertically and horizontally. The tooltip can be positioned along any axis and importantly can be used inside scroll views.
 
+<img src="https://github.com/joafc96/multi_directional_horizontal_list/blob/main/gifs/example_multi_directional_horizontal_list.gif" width="300">
+
+## Features
+* Easy creation of multi directional overlay tooltips
+* Algorithm automatically calculates where the tool tip has to be positioned wrt child provided
+* Opportunity to hide the tooltip programmatically
+* The tooltip works in lists and follow the target through scrolling (LFG)
+* No external dependencies
+
+
 ## Getting Started
 
-###  Depend on it
 Add this to your package's `pubspec.yaml` file:
+
 ```yaml
 dependencies:
   balloon_tip: <latest version>
 ```
 
-### Import it
 Now in your `Dart` code, you can use:
 ```dart
 import 'package:balloon_tip/balloon_tip.dart';
@@ -21,8 +30,6 @@ To add the UI is as simple as:
 ```dart
 BalloonTip(
       arrowPosition: ArrowPosition.bottomCenter,
-      containerMaxWidth: 200,
-      arrowTipDistance: 0,
       content: Text(
                   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel mauris velit. Maecenas convallis sapien non pharetra viverra. Maecenas tristique purus at aliquam convallis. Nam vestibulum ipsum sem. In scelerisque massa at iaculis tempor.",
                   style: TextStyle(
@@ -39,8 +46,6 @@ BalloonTip(
   ),
 ),
 ```
-
-API subject to change.
 
 ## Contributing
 
