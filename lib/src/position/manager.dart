@@ -3,7 +3,7 @@ import '../models/index.dart';
 import 'index.dart';
 
 class PositionManager {
-  // @required
+  /// @required
   /// [params] params the position strategy takes
   final PositionStrategyParams params;
 
@@ -11,7 +11,7 @@ class PositionManager {
     required this.params,
   });
 
-  /// Load the calculated balloontip position
+  /// Load the calculated balloonTip position
   BalloonTipElementsDisplay load({ArrowPosition? preferredPosition}) {
     IPositionStrategy strategy;
 

@@ -4,7 +4,7 @@ class TrianglePainter extends CustomPainter {
   /// [strokeColor] color applied to the triangle
   final Color strokeColor;
 
-  /// [paintingStyle] style applied to the trianle
+  /// [paintingStyle] style applied to the triangle
   ///  default value is .fill
   final PaintingStyle paintingStyle;
 

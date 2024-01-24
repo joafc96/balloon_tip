@@ -1,4 +1,3 @@
-
 import '../models/index.dart';
 
 class PositionStrategyParams {

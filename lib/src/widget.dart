@@ -6,68 +6,68 @@ import 'position/index.dart';
 import 'types.dart';
 
 class BalloonTip extends StatefulWidget {
-  // @required
-  /// [child] Widget that will trigger the balloontip to appear.
+  /// @required
+  /// [child] Widget that will trigger the balloonTip to appear.
   final Widget child;
 
-  // @required
-  /// [content] Content within the balloontip container.
+  /// @required
+  /// [content] Content within the balloonTip container.
   final Widget content;
 
-  // @optional
+  /// @optional
   /// [onDismiss] Callback for balloonTip bubble close button.
   final VoidCallback? onDismiss;
 
-  // @optional
-  // default: `BalloonTipArrowPosition.bottomCenter`
+  /// @optional
+  /// default: `BalloonTipArrowPosition.bottomCenter`
   /// [arrowPosition] Desired tooltip position in relationship to the trigger.
   final ArrowPosition arrowPosition;
 
-  // @optional
+  /// @optional
   /// [distance] Space between the balloonTip and the trigger.
   final double arrowTipDistance;
 
-  // @optional
+  /// @optional
   /// [duration] The forward duration of the opacity animation.
   final Duration duration;
 
-  // @optional
+  /// @optional
   /// [reverseDuration] The reverse duration of the opacity animation.
   final Duration reverseDuration;
 
-  // @optional
+  /// @optional
   /// [curve] The forward curve of the opacity animation.
   final Curve curve;
 
-  // @optional
+  /// @optional
   /// [reverseCurve] The reverse curve of the opacity animation.
   final Curve reverseCurve;
 
-  // @optional
+  /// @optional
   /// [showWhenUnlinked] Whether to show when composited follower is unlinked
   final bool showWhenUnlinked;
 
-// @optional
+  /// @optional
   /// [textDirection] The text direction applied to the text content
   final TextDirection textDirection;
 
-  // @optional
+  /// @optional
   /// [containerMinWidth] minimum width applied to the container.
   final double? containerMinWidth;
 
-  // @optional
+  /// @optional
   /// [containerMaxWidth] maximum width applied to the container.
   final double? containerMaxWidth;
 
-  // @optional
+  /// @optional
   /// [containerMinWidth] inner padding applied to the container.
   final EdgeInsets? containerPadding;
 
-  // @optional
+  /// @optional
   /// [color] Background color of the balloonTip and the arrow.
   final Color? backgroundColor;
 
-  // @optional
+  /// @optional
   /// [semanticsLabel] An optional semanticsLabel to be provided for automation.
   final String? semanticsLabel;
 
@@ -179,7 +179,7 @@ class _BalloonTipState extends State<BalloonTip>
     );
   }
 
-  /// Loads the balloontip container without opacity to measure the rendered size.
+  /// Loads the balloonTip container without opacity to measure the rendered size.
   void _loadHiddenOverlay(_) {
     _overlayEntryHidden = OverlayEntry(
       builder: (context) {
@@ -207,7 +207,7 @@ class _BalloonTipState extends State<BalloonTip>
     _overlayState.insert(_overlayEntryHidden!);
   }
 
-  /// Loads the balloontip into view
+  /// Loads the balloonTip into view
   void _showOverlay(BuildContext context) async {
     if (_overlayIsShown || !mounted) {
       return;
@@ -289,7 +289,7 @@ class _BalloonTipState extends State<BalloonTip>
     _overlayIsShown = true;
   }
 
-  /// Method to hide the tooltip
+  /// Method to hide the balloonTip
   void _hideOverlay() {
     if (!_overlayIsShown) {
       return;
@@ -327,7 +327,7 @@ class _BalloonTipState extends State<BalloonTip>
     return ElementBox.zero();
   }
 
-  /// Measures the size of the hidden tooltip container after it's loaded with _loadHiddenOverlay(_)
+  /// Measures the size of the hidden balloonTip container after it's loaded with _loadHiddenOverlay(_)
   void _getHiddenOverlaySize(context) async {
     final RenderBox? box =
         _hiddenOverlayKey.currentContext?.findRenderObject() as RenderBox?;

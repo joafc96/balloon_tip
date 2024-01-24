@@ -1,11 +1,13 @@
 name: balloon_tip
 description: A multi directional tooltip used to display any content with
   inbuilt support for scroll views that can be wrapped on any widgets that you like.
-version: 0.0.1
-homepage:
+version: 0.0.1-beta.1
+homepage: https://github.com/joafc96/balloon_tip
+repository: https://github.com/joafc96/balloon_tip
+issue_tracker: https://github.com/joafc96/balloon_tip/issues
 
 environment:
-  sdk: '>=2.19.2 <3.0.0'
+  sdk: '>=3.0.0 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:

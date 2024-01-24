@@ -4,28 +4,28 @@ import '../index.dart';
 import 'index.dart';
 
 class OverlayArrow extends StatelessWidget {
-    // @optional
+  /// @optional
   /// [color] background color applied for the arrow
   final Color? color;
 
-  // @optional
+  /// @optional
   /// [position] position of the arrow where it has to be rendered
   final ArrowPosition position;
 
-  // @optional
+  /// @optional
   /// [width] width of the arrow
   final double width;
 
-  // @optional
+  /// @optional
   /// [height] height of the arrow
   final double height;
 
-  // @optional
-  /// [fadeAnimation] Animation tween applid to the overlay
+  /// @optional
+  /// [fadeAnimation] Animation tween applied to the overlay
   final Animation<double> fadeAnimation;
 
-  // @optional
-  /// [semanticsLabel] An optional semanticsLabel to be provided for automation team
+  /// @optional
+  /// [semanticsLabel] An optional semanticsLabel to be provided for automation
   final String? semanticsLabel;
 
   const OverlayArrow({
@@ -66,7 +66,6 @@ class OverlayArrow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      container: true,
       label: semanticsLabel,
       child: FadeTransition(
         opacity: fadeAnimation,
