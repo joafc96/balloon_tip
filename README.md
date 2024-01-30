@@ -4,7 +4,7 @@
 
 <div style="display: flex;">
 <img src="https://github.com/joafc96/balloon_tip/raw/main/assets/bottom_center_balloon_tip.png" width="300">
-<img src="https://github.com/joafc96/balloon_tip/blob/main/assets/balloon_tip_scroll_view_example.gif" width="300">
+<img src="https://github.com/joafc96/balloon_tip/raw/main/assets/balloon_tip_scroll_view_example.gif" width="300">
 </div>
 
 ## Features
@@ -20,7 +20,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  balloon_tip:  ^0.0.1
+  balloon_tip:  ^0.0.2
 ```
 
 Now in your `Dart` code, you can use:

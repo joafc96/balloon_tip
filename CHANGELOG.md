@@ -1,3 +1,7 @@
+## 0.0.2
+
+* Updated assets.
+
 ## 0.0.1
 
 * Main release after testing in different devices and also updated the examples.
