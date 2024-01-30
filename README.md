@@ -3,6 +3,7 @@
 `balloon_tip` gives you more flexibility over the Flutter standard `Tooltip` by allowing you to set arbitrary content. It also expands on their single axis layout algorithm to fit both vertically and horizontally. The tooltip can be positioned along any axis and importantly can be used inside scroll views.
 
 <img src="https://github.com/joafc96/balloon_tip/raw/main/assets/bottom_center_balloon_tip.png" width="300">
+<img src="https://github.com/joafc96/balloon_tip/blob/main/assets/balloon_tip_scroll_view_example.gif" width="300">
 
 ## Features
 * Easy creation of multi directional overlay tooltips
