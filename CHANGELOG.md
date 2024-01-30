@@ -1,6 +1,6 @@
 ## 0.0.1
 
-* Main release after testing in different devices.
+* Main release after testing in different devices and also updated the examples.
 
 ## 0.0.1-beta.2
 

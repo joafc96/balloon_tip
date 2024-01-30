@@ -14,7 +14,6 @@
 * The tooltip works in lists and follow the target through scrolling (LFG)
 * No external dependencies
 
-
 ## Getting Started
 
 Add this to your package's `pubspec.yaml` file:
