@@ -18,7 +18,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  balloon_tip:  ^0.0.1-beta.2
+  balloon_tip:  ^0.0.1
 ```
 
 Now in your `Dart` code, you can use:
@@ -50,7 +50,3 @@ BalloonTip(
 ## Contributing
 
 Issues and PRs welcome. Unless otherwise specified, all contributions to this lib will be under MIT license.
-
-## Help wanted
-
-If you're interested in becoming a contributor with push rights please ping me and we can talk about how to get you started ! :)
